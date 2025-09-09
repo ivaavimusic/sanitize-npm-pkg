@@ -59,31 +59,39 @@ curl -fsSL https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/c
 ```powershell
 iwr -useb https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/community-deep-scan.js | out-file -encoding ascii deep-scan.js; node deep-scan.js
 ```
-  ```
 
-- Windows
-  Download LTS from https://nodejs.org/en/download and then run `node -v` and `npm -v` in PowerShell.
+**Windows Node.js Installation:**
+1. Download LTS from [nodejs.org](https://nodejs.org/en/download)
+2. Open PowerShell and run:
+   ```powershell
+   node -v
+   npm -v
+   ```
 
 ## What the scripts do
 
-- community-audit.js
-  - Scans your dependency tree (npm ls --all --json)
-  - Writes malware-audit.csv with a top line: `Status,Safe` or `Status,Infected`
-  - Lists, for each watched package: present, version, immediate parent, full parent chain
+### community-audit.js
+- Scans your dependency tree (`npm ls --all --json`)
+- Writes `malware-audit.csv` with a top line: `Status,Safe` or `Status,Infected`
+- Lists, for each watched package: present, version, immediate parent, full parent chain
 
-- community-fix.js
-  - Backs up package.json to package.json.bak
-  - Adds safe overrides to pin away from bad versions
-  - Removes node_modules and lockfiles; reinstalls with `npm ci` (fallback to `npm install`)
+### community-fix.js
+- Backs up `package.json` to `package.json.bak`
+- Adds safe overrides to pin away from bad versions
+- Removes `node_modules` and lockfiles; reinstalls with `npm ci` (fallback to `npm install`)
 
-- community-deep-scan.js (optional)
-  - Guides you to run SafeDep vet
-  - Always asks before any download/install
-  - Default is query‑only mode (`vet scan -D . --malware-query`); can optionally enable `--malware` if you have a SafeDep API key
+### community-deep-scan.js (optional)
+- Guides you to run SafeDep vet
+- Always asks before any download/install
+- Default is query‑only mode:
+  ```bash
+  vet scan -D . --malware-query
+  ```
+- Can optionally enable `--malware` if you have a SafeDep API key
 
 ## Infected versions this checks for
 
-If any of these exact versions are present in your dependency tree, you are considered Infected:
+If any of these exact versions are present in your dependency tree, you are considered infected:
 
 ```
 backslash@0.2.1
