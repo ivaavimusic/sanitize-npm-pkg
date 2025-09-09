@@ -14,6 +14,12 @@ Simple scripts to check if your project has malware-infected npm packages (like 
   brew install node
   ```
 - **Linux**: `sudo apt install nodejs npm` (Ubuntu/Debian) or `sudo dnf install nodejs npm` (Fedora/RHEL)
+- Verify installation:
+  Open PowerShell/Terminal and run:
+   ```powershell
+   node -v
+   npm -v
+   ```
 
 ### Step 2: Run the audit (safe, read-only)
 
@@ -59,14 +65,6 @@ curl -fsSL https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/c
 ```powershell
 iwr -useb https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/community-deep-scan.js | out-file -encoding ascii deep-scan.js; node deep-scan.js
 ```
-
-**Windows Node.js Installation:**
-1. Download LTS from [nodejs.org](https://nodejs.org/en/download)
-2. Open PowerShell and run:
-   ```powershell
-   node -v
-   npm -v
-   ```
 
 ## What the scripts do
 
