@@ -1,6 +1,6 @@
 # sanitize-npm-pkg
 
-Ultra‑simple scripts to audit and sanitize your project from recently reported malware‑infected npm packages like chalk. One‑liners.
+Ultra‑simple scripts to audit and sanitize your project from recently reported malware‑infected npm packages like chalk. One‑liners. No Cloning Required.
 
 Warning: The optional deep scan uses a third‑party tool (SafeDep vet). Review it yourself before using.
 
