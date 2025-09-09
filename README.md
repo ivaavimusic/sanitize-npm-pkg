@@ -118,6 +118,10 @@ The audit script prints exactly where they come from (immediate parent + full ch
 - The audit focuses on exact versions reported as malicious. The fix pins safe versions via overrides to prevent accidental upgrades into compromised versions.
 - For additional assurance, the optional deep scan uses SafeDep vet to query known malicious packages (and, with an API key, perform active analysis).
 
+## Detailed Explanations and Findings: 
+- https://jdstaerk.substack.com/p/we-just-found-malicious-code-in-the
+- https://www.aikido.dev/blog/npm-debug-and-chalk-packages-compromised
+
 ## Disclaimers
 
 - Use at your own risk. This list is based on currently known bad versions and may not be exhaustive.
