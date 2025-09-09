@@ -7,8 +7,13 @@ Simple scripts to check if your project has malware-infected npm packages (like 
 ### Step 1: Install Node.js if you don't have it
 
 - **Windows**: Download from [nodejs.org](https://nodejs.org/en/download/) (LTS version)
-- **Mac**: `brew install node` (or download from [nodejs.org](https://nodejs.org/en/download/))
-- **Linux**: `sudo apt install nodejs npm` (or your distro's equivalent)
+- **Mac with Homebrew**: `brew install node`
+- **Mac without Homebrew**: Download from [nodejs.org](https://nodejs.org/en/download/) or install Homebrew first:
+  ```bash
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  brew install node
+  ```
+- **Linux**: `sudo apt install nodejs npm` (Ubuntu/Debian) or `sudo dnf install nodejs npm` (Fedora/RHEL)
 
 ### Step 2: Run the audit (safe, read-only)
 
