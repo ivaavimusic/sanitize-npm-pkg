@@ -1,58 +1,59 @@
 # sanitize-npm-pkg
 
-Ultra‑simple scripts to audit and sanitize your project from recently reported malware‑infected npm packages like chalk. One‑liners. No Cloning Required.
+Simple scripts to check if your project has malware-infected npm packages (like chalk). No coding required!
 
-Warning: The optional deep scan uses a third‑party tool (SafeDep vet). Review it yourself before using.
+## 🚨 Is my project infected?
 
-## TL;DR – One‑liners (macOS/Linux)
+### Step 1: Install Node.js if you don't have it
 
-- Quick Audit (creates malware-audit.csv with Safe/Infected at the top)
-  ```bash
-  curl -fsSL https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/scripts/community-audit.js -o audit.js && node audit.js
-  ```
+- **Windows**: Download from [nodejs.org](https://nodejs.org/en/download/) (LTS version)
+- **Mac**: `brew install node` (or download from [nodejs.org](https://nodejs.org/en/download/))
+- **Linux**: `sudo apt install nodejs npm` (or your distro's equivalent)
 
-- Auto‑Fix (applies safe overrides, removes node_modules + lockfiles, reinstalls)
-  ```bash
-  curl -fsSL https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/scripts/community-fix.js -o fix.js && node fix.js
-  ```
+### Step 2: Run the audit (safe, read-only)
 
-- Optional Deep Scan with vet (asks confirmation before any download/install)
-  ```bash
-  curl -fsSL https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/scripts/community-deep-scan.js -o deep-scan.js && node deep-scan.js
-  ```
+Copy-paste this single command in your project folder:
 
-## TL;DR – One‑liners (Windows PowerShell)
+**Mac/Linux:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/community-audit.js -o audit.js && node audit.js
+```
 
-- Quick Audit
-  ```powershell
-  iwr -useb https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/scripts/community-audit.js | out-file -encoding ascii audit.js; node audit.js
-  ```
+**Windows PowerShell:**
+```powershell
+iwr -useb https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/community-audit.js | out-file -encoding ascii audit.js; node audit.js
+```
 
-- Auto‑Fix
-  ```powershell
-  iwr -useb https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/scripts/community-fix.js | out-file -encoding ascii fix.js; node fix.js
-  ```
+### Step 3: Check the results
 
-- Optional Deep Scan with vet
-  ```powershell
-  iwr -useb https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/scripts/community-deep-scan.js | out-file -encoding ascii deep-scan.js; node deep-scan.js
-  ```
+- Open the `malware-audit.csv` file created in your project folder
+- First line will say either `Status,Safe` or `Status,Infected`
 
-## Prerequisite: Node.js (simple install)
+### Step 4: If infected, run the fix
 
-- macOS (Homebrew, LTS 20.x)
-  ```bash
-  brew update && brew install node@20
-  echo 'export PATH="/opt/homebrew/opt/node@20/bin:$PATH"' >> ~/.zprofile  # Apple Silicon
-  echo 'export PATH="/usr/local/opt/node@20/bin:$PATH"' >> ~/.zprofile    # Intel Macs
-  exec $SHELL -l; node -v; npm -v
-  ```
+**Mac/Linux:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/community-fix.js -o fix.js && node fix.js
+```
 
-- Debian/Ubuntu (NodeSource LTS 20.x)
-  ```bash
-  curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-  sudo apt-get install -y nodejs
-  node -v; npm -v
+**Windows PowerShell:**
+```powershell
+iwr -useb https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/community-fix.js | out-file -encoding ascii fix.js; node fix.js
+```
+
+### Step 5 (Optional): Deep scan with vet
+
+This uses a third-party tool (SafeDep vet). It will ask for confirmation before any downloads.
+
+**Mac/Linux:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/community-deep-scan.js -o deep-scan.js && node deep-scan.js
+```
+
+**Windows PowerShell:**
+```powershell
+iwr -useb https://raw.githubusercontent.com/ivaavimusic/sanitize-npm-pkg/main/community-deep-scan.js | out-file -encoding ascii deep-scan.js; node deep-scan.js
+```
   ```
 
 - Windows
@@ -119,8 +120,8 @@ The audit script prints exactly where they come from (immediate parent + full ch
 - For additional assurance, the optional deep scan uses SafeDep vet to query known malicious packages (and, with an API key, perform active analysis).
 
 ## Detailed Explanations and Findings: 
-- https://jdstaerk.substack.com/p/we-just-found-malicious-code-in-the
-- https://www.aikido.dev/blog/npm-debug-and-chalk-packages-compromised
+- [We just found malicious code in the npm ecosystem](https://jdstaerk.substack.com/p/we-just-found-malicious-code-in-the)
+- [NPM debug and chalk packages compromised](https://www.aikido.dev/blog/npm-debug-and-chalk-packages-compromised)
 
 ## Disclaimers
 
